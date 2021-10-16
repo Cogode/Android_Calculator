@@ -22,32 +22,25 @@
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:rowCount="5"
+        android:columnCount="7"
+        android:rowCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/btn_clearAll"
+            android:id="@+id/btn_sin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickClearAll"
-            android:text="C" />
+            android:onClick="onClickSin"
+            android:text="sin" />
 
         <Button
-            android:id="@+id/btn_clearTail"
+            android:id="@+id/btn_leftParentheses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickClearOne"
-            android:text="X" />
-
-        <Button
-            android:id="@+id/btn_remainder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickPercent"
-            android:text="%" />
+            android:onClick="onClickLeftParentheses"
+            android:text="(" />
 
         <Button
             android:id="@+id/btn_divide"
@@ -78,6 +71,27 @@
             android:text="9" />
 
         <Button
+            android:id="@+id/btn_clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickClearAll"
+            android:text="C" />
+
+        <Button
+            android:id="@+id/btn_cos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickCos"
+            android:text="cos" />
+
+        <Button
+            android:id="@+id/btn_rightParentheses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickRightParentheses"
+            android:text=")" />
+
+        <Button
             android:id="@+id/btn_multi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,6 +120,27 @@
             android:text="6" />
 
         <Button
+            android:id="@+id/btn_clearTail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickClearOne"
+            android:text="X" />
+
+        <Button
+            android:id="@+id/btn_tan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickTan"
+            android:text="tan" />
+
+        <Button
+            android:id="@+id/btn_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPower"
+            android:text="^" />
+
+        <Button
             android:id="@+id/btn_sub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,6 +167,27 @@
             android:layout_height="wrap_content"
             android:onClick="onClickThree"
             android:text="3" />
+
+        <Button
+            android:id="@+id/btn_remainder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPercent"
+            android:text="%" />
+
+        <Button
+            android:id="@+id/btn_radical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickRadical"
+            android:text="@string/radical" />
+
+        <Button
+            android:id="@+id/btn_factorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickFactorial"
+            android:text="!" />
 
         <Button
             android:id="@+id/btn_add"

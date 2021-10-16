@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -111,9 +112,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickPercent(View view) {
-        if(!expression.equals(""))
-            if(expression.charAt(expression.length() - 1) >= '0' && expression.charAt(expression.length() - 1) <= '9')
+        if(!expression.equals("")) {
+            char c = expression.charAt(expression.length() - 1);
+            if (c >= '0' && c <= '9' || c == ')')
                 expression += "%";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickLeftParentheses(View view) {
+        if(expression.equals(""))
+            expression += "(";
+        else {
+            if(isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += "(";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickRightParentheses(View view) {
+        if(expression.equals(""))
+            expression += ")";
+        else {
+            if(!isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += ")";
+        }
         textView.setText(expression);
     }
 
@@ -128,12 +151,78 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickMulti(View view) {
-        expression += getResources().getString(R.string.multi);
+        if(!expression.equals("")) {
+            char c = expression.charAt(expression.length() - 1);
+            if (c >= '0' && c <= '9' || c == ')' || c == '%' || c == '!')
+                expression += getResources().getString(R.string.multi);
+        }
         textView.setText(expression);
     }
 
     public void onClickDivide(View view) {
-        expression += getResources().getString(R.string.divide);
+        if(!expression.equals("")) {
+            char c = expression.charAt(expression.length() - 1);
+            if (c >= '0' && c <= '9' || c == ')' || c == '%' || c == '!')
+                expression += getResources().getString(R.string.divide);
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickSin(View view) {
+        if(expression.equals(""))
+            expression += "sin";
+        else {
+            if(isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += "sin";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickCos(View view) {
+        if(expression.equals(""))
+            expression += "cos";
+        else {
+            if(isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += "cos";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickTan(View view) {
+        if(expression.equals(""))
+            expression += "tan";
+        else {
+            if(isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += "tan";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickFactorial(View view) {
+        if(!expression.equals("")) {
+            char c = expression.charAt(expression.length() - 1);
+            if(c >= '0' && c <= '9' || c == ')')
+                expression += "!";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickPower(View view) {
+        if(!expression.equals("")) {
+            char c = expression.charAt(expression.length() - 1);
+            if(c >= '0' && c <= '9' || c == ')')
+                expression += "^";
+        }
+        textView.setText(expression);
+    }
+
+    public void onClickRadical(View view) {
+        if(expression.equals(""))
+            expression += getResources().getString(R.string.radical);
+        else {
+            if(isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
+                expression += getResources().getString(R.string.radical);
+        }
         textView.setText(expression);
     }
 
@@ -193,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
                 switch(getPriority(operators.get(operators.size() - 1), s)) {
                     case '<':
                         operators.add(s);
+                        if(isFunction(s))
+                            sign += 2;
                         s = String.valueOf(expression.charAt(sign ++));
                         break;
                     case '=':
@@ -202,10 +293,10 @@ public class MainActivity extends AppCompatActivity {
                     case '>':
                         String operator = operators.get(operators.size() - 1);
                         operators.remove(operators.size() - 1);
-                        if(operator.equals("%")) {
+                        if(operator.equals("%") || operator.equals("!") || operator.equals(getResources().getString(R.string.radical)) || isFunction(operator)) {
                             double num = operands.get(operands.size() - 1);
                             operands.remove(operands.size() - 1);
-                            operands.add(num / 100);
+                            operands.add(operatePro(num, operator));
                         }
                         else {
                             double secondNum = operands.get(operands.size() - 1);
@@ -237,8 +328,26 @@ public class MainActivity extends AppCompatActivity {
             return false;
     }
 
+    public boolean isOperator(String s) {
+        if(s.equals(getResources().getString(R.string.multi)))
+            s = "*";
+        if(s.equals(getResources().getString(R.string.divide)))
+            s = "/";
+        char c = s.charAt(0);
+        if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == 'n' || c == 's' || s.equals(getResources().getString(R.string.radical)))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isFunction(String s) {
+        if(s.equals("s") || s.equals("c") || s.equals("t"))
+            return true;
+        else
+            return false;
+    }
+
     public char getPriority(String s1, String s2) {
-        // 返回两个操作符的优先级
         if(s1.equals(getResources().getString(R.string.multi)))
             s1 = "*";
         if(s1.equals(getResources().getString(R.string.divide)))
@@ -247,30 +356,32 @@ public class MainActivity extends AppCompatActivity {
             s2 = "*";
         if(s2.equals(getResources().getString(R.string.divide)))
             s2 = "/";
+        if(s2.equals(getResources().getString(R.string.radical)))
+            s2 = "√";
 
         if(s1.equals("+") || s1.equals("-")) {
             if(s2.equals("+") || s2.equals("-") || s2.equals(")") || s2.equals("#"))
                 return '>';
-            else if(s2.equals("*") || s2.equals("/") || s2.equals("(") || s2.equals("%"))
+            else if(s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
                 return '<';
         }
 
-        else if(s1.equals("*") || s1.equals("/")) {
+        else if(s1.equals("*") || s1.equals("/") || s1.equals("^")) {
             if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals(")") || s2.equals("#"))
                 return '>';
-            else if(s2.equals("(") || s2.equals("%"))
+            else if(s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
                 return '<';
         }
 
         else if(s1.equals("(")) {
             if(s2.equals(")"))
                 return '=';
-            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("(") || s2.equals("%"))
+            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
                 return '<';
         }
 
         else if(s1.equals(")")) {
-            if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals(")") || s2.equals("#") || s2.equals("%"))
+            if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals(")") || s2.equals("#") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
                 return '>';
             else if(s2.equals("("))
                 return '=';
@@ -279,27 +390,73 @@ public class MainActivity extends AppCompatActivity {
         else if(s1.equals("#")) {
             if(s2.equals("#"))
                 return '=';
-            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("(") || s2.equals("%"))
+            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals(")") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
                 return '<';
         }
 
-        else if(s1.equals("%")) {
+        else if(s1.equals("%") || s1.equals("!")) {
             return '>';
+        }
+
+        else if(s1.equals("s") || s1.equals("c") || s1.equals("t") || s1.equals("√")) {
+            if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals(")") || s2.equals("#"))
+                return '>';
+            else if(s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√"))
+                return '<';
         }
 
         return ' ';
     }
 
-    public double operate(double a, String operator, double b) {
+    public double operate(double m, String operator, double n) {
+        BigDecimal b1 = new BigDecimal(Double.toString(m));
+        BigDecimal b2 = new BigDecimal(Double.toString(n));
         if(operator.equals("+"))
-            return a + b;
+            return b1.add(b2).doubleValue();
         else if(operator.equals("-"))
-            return a - b;
+            return b1.subtract(b2).doubleValue();
         else if(operator.equals(getResources().getString(R.string.multi)))
-            return a * b;
+            return b1.multiply(b2).doubleValue();
         else if(operator.equals(getResources().getString(R.string.divide)))
-            return a / b;
+            return b1.divide(b2).doubleValue();
+        else if(operator.equals("^"))
+            return Math.pow(m, n);
 
         return 0;
+    }
+
+    public double operatePro(double num, String type) {
+        BigDecimal b = new BigDecimal(Double.toString(num));
+        if(type.equals("s"))
+            return Math.sin(num);
+        else if(type.equals("c"))
+            return Math.cos(num);
+        else if(type.equals("t"))
+            return Math.tan(num);
+        else if(type.equals("%"))
+            return b.divide(new BigDecimal(Double.toString(100))).doubleValue();
+        else if(type.equals("!"))
+            return gamma(num);
+        else if(type.equals(getResources().getString(R.string.radical)))
+            return Math.sqrt(num);
+
+        return 0;
+    }
+
+    public double gamma(double num) {
+        double array[] = { 0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+                771.32342877765313, -176.61502916214059, 12.507343278686905,
+                -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7 };
+        int n = 7;
+
+        if(num < 0.5)
+            return Math.PI / (Math.sin(Math.PI * num) * gamma(1 - num));
+        else {
+            double x = array[0];
+            for(int i = 1; i < (n + 2); i ++)
+                x += array[i] / (num + i);
+            double t = num + n + 0.5;
+            return Math.sqrt(2 * Math.PI) * Math.pow(t, num + 0.5) * Math.exp(-t) * x;
+        }
     }
 }
