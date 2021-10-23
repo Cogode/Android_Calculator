@@ -7,22 +7,53 @@
     tools:context=".MainActivity">
 
     <GridLayout
+        android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout">
+        android:layout_height="50dp"
+        android:columnCount="3"
+        android:rowCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/indexPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="计 算 器" />
+
+        <Button
+            android:id="@+id/ratePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="在 线 汇 率" />
+
+        <Button
+            android:id="@+id/exchangePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换 算" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/keyboard">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp"
+            android:textSize="25sp" />
 
-    </GridLayout>
+    </LinearLayout>
 
     <GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="7"
+        android:columnCount="8"
         android:rowCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClickSin"
-            android:text="sin" />
+            android:text="SIN" />
+
+        <Button
+            android:id="@+id/btn_factorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickFactorial"
+            android:text="!" />
 
         <Button
             android:id="@+id/btn_leftParentheses"
@@ -82,7 +120,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClickCos"
-            android:text="cos" />
+            android:text="COS" />
+
+        <Button
+            android:id="@+id/btn_PI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPI"
+            android:text="@string/PI" />
 
         <Button
             android:id="@+id/btn_rightParentheses"
@@ -131,14 +176,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClickTan"
-            android:text="tan" />
+            android:text="TAN" />
 
         <Button
-            android:id="@+id/btn_power"
+            android:id="@+id/btn_e"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickPower"
-            android:text="^" />
+            android:onClick="onClickE"
+            android:text="e" />
+
+        <Button
+            android:id="@+id/btn_radical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickRadical"
+            android:text="@string/radical" />
 
         <Button
             android:id="@+id/btn_sub"
@@ -176,18 +228,25 @@
             android:text="%" />
 
         <Button
-            android:id="@+id/btn_radical"
+            android:id="@+id/btn_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickRadical"
-            android:text="@string/radical" />
+            android:onClick="onClickLog"
+            android:text="log" />
 
         <Button
-            android:id="@+id/btn_factorial"
+            android:id="@+id/btn_ln"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickFactorial"
-            android:text="!" />
+            android:onClick="onClickLn"
+            android:text="ln" />
+
+        <Button
+            android:id="@+id/btn_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPower"
+            android:text="^" />
 
         <Button
             android:id="@+id/btn_add"

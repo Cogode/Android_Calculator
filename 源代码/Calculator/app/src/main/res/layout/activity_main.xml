@@ -7,19 +7,51 @@
     tools:context=".MainActivity">
 
     <GridLayout
+        android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout">
+        android:layout_height="50dp"
+        android:columnCount="3"
+        android:rowCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/indexPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="计 算 器" />
+
+        <Button
+            android:id="@+id/ratePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="在 线 汇 率" />
+
+        <Button
+            android:id="@+id/exchangePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换 算" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/keyboard">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp"
+            android:textSize="25sp" />
 
-    </GridLayout>
+    </LinearLayout>
 
     <GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="4"

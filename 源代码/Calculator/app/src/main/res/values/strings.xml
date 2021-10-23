@@ -3,4 +3,5 @@
     <string name="multi">×</string>
     <string name="divide">÷</string>
     <string name="radical">√</string>
+    <string name="PI">π</string>
 </resources>
