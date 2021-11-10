@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">计算器</string>
     <string name="multi">×</string>
     <string name="divide">÷</string>
     <string name="radical">√</string>

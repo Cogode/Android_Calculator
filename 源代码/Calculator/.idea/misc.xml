@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
-        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/activity_main.xml" value="0.16799999999999998" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/fragment_first.xml" value="0.21472663139329806" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/text.xml" value="0.21472663139329806" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_main.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_first.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_test.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/test.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/text.xml" value="0.2" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/menu/toolbar.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>

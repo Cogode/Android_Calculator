@@ -1,46 +1,75 @@
 package com.example.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.calculator.adapter.MyPageAdapter;
+import com.example.calculator.fragment.MyFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
-    TextView textView;
     String expression = "";
     ArrayList<Double> operands = new ArrayList<>();
     ArrayList<String> operators = new ArrayList<>();
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    MyFragment myFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GridLayout keyboard = findViewById(R.id.keyboard);
-        GridLayout nav = findViewById(R.id.nav);
-        int screenWidth = this.getWindowManager().getDefaultDisplay().getWidth();
-        int columnCount = nav.getColumnCount();
-        for(int i = 0; i < nav.getChildCount(); i ++) {
-            Button button = (Button) nav.getChildAt(i);
-            button.setWidth(screenWidth / columnCount);
-        }
-        columnCount = keyboard.getColumnCount();
-        for(int i = 0; i < keyboard.getChildCount(); i ++) {
-            Button button = (Button) keyboard.getChildAt(i);
-            button.setWidth(screenWidth / columnCount);
-        }
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
-        textView = findViewById(R.id.textView);
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new MyFragment(R.layout.fragment_first));
+        fragmentList.add(new MyFragment(R.layout.fragment_first));
+        fragmentList.add(new MyFragment(R.layout.fragment_first));
+        myFragment = (MyFragment) fragmentList.get(0);
+
+        viewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), fragmentList));
+        tabLayout.setupWithViewPager(viewPager);
     }
-    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.help:
+                Toast.makeText(this, "这是帮助", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this, "这是设置", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.exit:
+                System.exit(0);
+        }
+        return true;
+    }
+
+    public void setText(String text) {
+        myFragment.setText(text);
+    }
+
     public void onClickNumber() {
         if(!expression.equals("")) {
             char last = expression.charAt(expression.length() - 1);
@@ -52,61 +81,61 @@ public class MainActivity extends AppCompatActivity {
     public void onClickOne(View view) {
         onClickNumber();
         expression += "1";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickTwo(View view) {
         onClickNumber();
         expression += "2";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickThree(View view) {
         onClickNumber();
         expression += "3";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickFour(View view) {
         onClickNumber();
         expression += "4";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickFive(View view) {
         onClickNumber();
         expression += "5";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickSix(View view) {
         onClickNumber();
         expression += "6";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickSeven(View view) {
         onClickNumber();
         expression += "7";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickEight(View view) {
         onClickNumber();
         expression += "8";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickNine(View view) {
         onClickNumber();
         expression += "9";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickZero(View view) {
         onClickNumber();
         expression += "0";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickDoubleZero(View view) {
@@ -119,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             else
                 expression += "0";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickPoint(View view) {
@@ -135,17 +164,17 @@ public class MainActivity extends AppCompatActivity {
                     expression += "0.";
             }
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickPI(View view) {
         expression += getResources().getString(R.string.PI);
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickE(View view) {
         expression += "e";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickPercent(View view) {
@@ -154,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             if(c == ')' || isNumber(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += "%";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickLeftParentheses(View view) {
@@ -165,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += "(";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickRightParentheses(View view) {
@@ -175,17 +204,17 @@ public class MainActivity extends AppCompatActivity {
             if(!isOperator(String.valueOf(expression.charAt(expression.length() - 1))))
                 expression += ")";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickAdd(View view) {
         expression += "+";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickSub(View view) {
         expression += "-";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickMulti(View view) {
@@ -194,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             if(c >= '0' && c <= '9' || c == ')' || c == '%' || c == '!' || isIrrational(String.valueOf(c)))
                 expression += getResources().getString(R.string.multi);
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickDivide(View view) {
@@ -203,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
             if (c >= '0' && c <= '9' || c == ')' || c == '%' || c == '!' || isIrrational(String.valueOf(c)))
                 expression += getResources().getString(R.string.divide);
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickSin(View view) {
@@ -214,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
             if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += "sin";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickCos(View view) {
@@ -225,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += "cos";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickTan(View view) {
@@ -236,7 +265,29 @@ public class MainActivity extends AppCompatActivity {
             if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += "tan";
         }
-        textView.setText(expression);
+        setText(expression);
+    }
+
+    public void onClickLog(View view) {
+        if(expression.equals(""))
+            expression += "log";
+        else {
+            char c = expression.charAt(expression.length() - 1);
+            if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
+                expression += "log";
+        }
+        setText(expression);
+    }
+
+    public void onClickLn(View view) {
+        if(expression.equals(""))
+            expression += "ln";
+        else {
+            char c = expression.charAt(expression.length() - 1);
+            if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
+                expression += "ln";
+        }
+        setText(expression);
     }
 
     public void onClickFactorial(View view) {
@@ -245,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             if(isNumber(String.valueOf(c)) || c == ')' || isIrrational(String.valueOf(c)))
                 expression += "!";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickPower(View view) {
@@ -254,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
             if(isNumber(String.valueOf(c))|| c == ')' || isIrrational(String.valueOf(c)))
                 expression += "^";
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickRadical(View view) {
@@ -265,18 +316,18 @@ public class MainActivity extends AppCompatActivity {
             if(isOperator(String.valueOf(c)) || isIrrational(String.valueOf(c)))
                 expression += getResources().getString(R.string.radical);
         }
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickClearAll(View view) {
         expression = "";
-        textView.setText(expression);
+        setText(expression);
     }
 
     public void onClickClearOne(View view) {
         if(!expression.equals("")) {
             expression = expression.substring(0, expression.length() - 1);
-            textView.setText(expression);
+            setText(expression);
         }
     }
 
@@ -359,11 +410,13 @@ public class MainActivity extends AppCompatActivity {
             else {
                 switch(getPriority(operators.get(operators.size() - 1), s)) {
                     case '<':
-                        operators.add(s);
-                        if(isFunction(s)) {
-                            if(s.equals("l") && expression.charAt(sign) == 'n')
-                                sign += 1;
-                            else
+                        if(s.equals("l") && expression.charAt(sign) == 'n') {
+                            operators.add("L");
+                            sign += 1;
+                        }
+                        else {
+                            operators.add(s);
+                            if(isFunction(s))
                                 sign += 2;
                         }
                         s = String.valueOf(expression.charAt(sign++));
@@ -392,11 +445,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        expression = expression.split("#")[0];
-        expression += "=" + operands.get(operands.size() - 1);
-        if(expression.charAt(expression.length() - 1) == '0' && expression.charAt(expression.length() - 2) == '.')
-            expression = expression.substring(0, expression.length() - 2);
-        textView.setText(expression);
+        if(!expression.equals("#")) {
+            expression = expression.split("#")[0];
+            expression += "=" + operands.get(operands.size() - 1);
+            if(expression.charAt(expression.length() - 1) == '0' && expression.charAt(expression.length() - 2) == '.')
+                expression = expression.substring(0, expression.length() - 2);
+            setText(expression);
+        }
         expression = "";
         operands.clear();
         operators.clear();
@@ -432,7 +487,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isFunction(String s) {
-        if(s.equals("s") || s.equals("c") || s.equals("t") || s.equals("l"))
+        if(s.equals("s") || s.equals("c") || s.equals("t") || s.equals("l") || s.equals("L"))
             return true;
         else
             return false;
@@ -469,48 +524,45 @@ public class MainActivity extends AppCompatActivity {
         if(s1.equals("+") || s1.equals("-")) {
             if(s2.equals("+") || s2.equals("-") || s2.equals(")") || s2.equals("#"))
                 return '>';
-            else if(s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            else if(s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '<';
         }
 
-        else if(s1.equals("*") || s1.equals("/") || s1.equals("^")) {
+        else if(s1.equals("*") || s1.equals("/") || s1.equals("^") || s1.equals("**")) {
             if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals(")") || s2.equals("#"))
                 return '>';
-            else if(s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            else if(s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '<';
         }
 
         else if(s1.equals("(")) {
             if(s2.equals(")"))
                 return '=';
-            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '<';
         }
 
         else if(s1.equals(")")) {
-            if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals(")") || s2.equals("#") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals(")") || s2.equals("#") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '>';
             else if(s2.equals("("))
                 return '=';
         }
 
-        else if(s1.equals("s") || s1.equals("c") || s1.equals("t") || s1.equals("√")) {
+        else if(s1.equals("s") || s1.equals("c") || s1.equals("t") || s1.equals("l") || s1.equals("L") || s1.equals("√")) {
             if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals(")") || s2.equals("#"))
                 return '>';
-            else if(s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            else if(s2.equals("(") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '<';
         }
 
         else if(s1.equals("%") || s1.equals("!"))
             return '>';
 
-        else if(s1.equals("**"))
-            return '>';
-
         else if(s1.equals("#")) {
             if(s2.equals("#"))
                 return '=';
-            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals(")") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("√") || s2.equals("**"))
+            else if(s2.equals("+") || s2.equals("-") || s2.equals("*") || s2.equals("/") || s2.equals("^") || s2.equals("(") || s2.equals(")") || s2.equals("%") || s2.equals("!") || s2.equals("s") || s2.equals("c") || s2.equals("t") || s2.equals("l") || s2.equals("L") || s2.equals("√") || s2.equals("**"))
                 return '<';
         }
 
@@ -542,6 +594,10 @@ public class MainActivity extends AppCompatActivity {
             return Math.cos(num);
         else if(type.equals("t"))
             return Math.tan(num);
+        else if(type.equals("l"))
+            return Math.log10(num);
+        else if(type.equals("L"))
+            return Math.log(num);
         else if(type.equals("%"))
             return b.divide(new BigDecimal(Double.toString(100))).doubleValue();
         else if(type.equals("!"))
