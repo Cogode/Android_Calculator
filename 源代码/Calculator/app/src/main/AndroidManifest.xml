@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.calculator">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/calculator_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/calculator_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculator">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".activity.HistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.SelectionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.ConversionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

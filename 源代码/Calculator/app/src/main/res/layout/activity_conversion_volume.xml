@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.ConversionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/input_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClickSelection">
+
+        <TextView
+            android:id="@+id/input_unit_textView"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="18dp"
+            android:text="立方厘米\ncm3"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/input_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=">"
+            android:textColor="#bbb"
+            android:textSize="75sp"
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_unit_textView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/input_textView"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textSize="20sp"
+            android:padding="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_select"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/output_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/input_view"
+        android:onClick="onClickSelection">
+
+        <TextView
+            android:id="@+id/output_unit_textView"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:text="立方米\nm3"
+            android:textSize="20sp"
+            android:paddingLeft="18dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/output_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=">"
+            android:textColor="#bbb"
+            android:textSize="75sp"
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/output_unit_textView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/output_textView"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textSize="20sp"
+            android:padding="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/output_select"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="4"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_seven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:onClick="onClickSeven" />
+
+        <Button
+            android:id="@+id/btn_eight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8"
+            android:onClick="onClickEight" />
+
+        <Button
+            android:id="@+id/btn_nine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:onClick="onClickNine" />
+
+        <Button
+            android:id="@+id/btn_clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:layout_rowSpan="2"
+            android:layout_gravity="fill_vertical"
+            android:onClick="onClickClearAll" />
+
+        <Button
+            android:id="@+id/btn_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:onClick="onClickFour" />
+
+        <Button
+            android:id="@+id/btn_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:onClick="onClickFive" />
+
+        <Button
+            android:id="@+id/btn_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:onClick="onClickSix" />
+
+        <Button
+            android:id="@+id/btn_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:onClick="onClickOne" />
+
+        <Button
+            android:id="@+id/btn_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:onClick="onClickTwo" />
+
+        <Button
+            android:id="@+id/btn_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="onClickThree" />
+
+        <Button
+            android:id="@+id/btn_clearTail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:layout_rowSpan="2"
+            android:layout_gravity="fill_vertical"
+            android:onClick="onClickClearTail" />
+
+        <Button
+            android:id="@+id/btn_doubleZero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:onClick="onClickDoubleZero" />
+
+        <Button
+            android:id="@+id/btn_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:onClick="onClickZero" />
+
+        <Button
+            android:id="@+id/btn_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            android:onClick="onClickPoint" />
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

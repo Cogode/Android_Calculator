@@ -3,15 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/drawable/screen.xml" value="0.22719298245614036" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/activity_main.xml" value="0.16799999999999998" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/fragment_first.xml" value="0.21472663139329806" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout-land/text.xml" value="0.21472663139329806" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_conversion_length.xml" value="0.14945652173913043" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_conversion_scale.xml" value="0.13859649122807016" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_conversion_volume.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_history.xml" value="0.21359649122807017" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_main.xml" value="0.21359649122807017" />
-        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_first.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_selection.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_selection_length.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/activity_selection_volume.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/conversion_length.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_first.xml" value="0.14945652173913043" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_second.xml" value="0.21359649122807017" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_test.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_three.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/fragment_two.xml" value="0.20043859649122808" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/history_row_item.xml" value="0.21359649122807017" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/selection_row_item.xml" value="0.21359649122807017" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/test.xml" value="0.21359649122807017" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/layout/text.xml" value="0.2" />
         <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/menu/toolbar.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/AndroidStudioProjects/projects/Calculator/app/src/main/res/xml/network_config.xml" value="0.11140350877192982" />
       </map>
     </option>
   </component>
