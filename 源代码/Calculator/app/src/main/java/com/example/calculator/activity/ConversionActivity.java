@@ -155,6 +155,7 @@ public class ConversionActivity extends AppCompatActivity {
             else if(unit.equals("pc"))
                 return input * 30856864263739790.235036735096906;
         }
+
         else if(type.equals("volume")) {
             if(unit.equals("mm3"))
                 return input / Math.pow(10, 9);
@@ -229,6 +230,7 @@ public class ConversionActivity extends AppCompatActivity {
             else if(unit.equals("pc"))
                 return input * 3.24077E-17;
         }
+        
         else if(type.equals("volume")) {
             if(unit.equals("mm3"))
                 return input * Math.pow(10, 9);
